@@ -97,6 +97,10 @@ function SuccessScreen() {
     try {
       await navigator.clipboard.writeText(createdInvoice);
       toast.success("Link copied to clipboard!");
+
+      setTimeout(() => {
+        setPaid(true)
+      },100000)
     } catch (err) {
       toast.error("Failed to copy:", err);
     }
@@ -111,8 +115,8 @@ function SuccessScreen() {
             title="Successfully Received Payment"
             subTitle={` received XLM `}
           />
-          ): {
-            <div>
+          ): (
+            <div className="flex flex-col justify-center items-center gap-4">
             
       <QRCode
         size={250}
@@ -124,7 +128,7 @@ function SuccessScreen() {
       </Button>
       <Text>waiting for payment...</Text>
       </div>
-      }}
+      )}
     </div>
   );
 }
