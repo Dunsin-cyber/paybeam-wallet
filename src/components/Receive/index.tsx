@@ -100,7 +100,7 @@ function SuccessScreen() {
 
       setTimeout(() => {
         setPaid(true)
-      },100000)
+      },10000)
     } catch (err) {
       toast.error("Failed to copy:", err);
     }

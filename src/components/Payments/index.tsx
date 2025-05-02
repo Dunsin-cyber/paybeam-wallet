@@ -157,7 +157,7 @@ function Payment() {
         <ArrowLeftOutlined onClick={() => router("/back")} />
         <h1 className="text-2xl font-bold text-center">
           Make Payment{" "}
-          <span className="text-xs align-middle ml-2">{payToInvoice ? "(BOLT11)" : "(LN Address)"}</span>
+          {/* <span className="text-xs align-middle ml-2">{payToInvoice ? "(BOLT11)" : "(LN Address)"}</span> */}
         </h1>{" "}
         <Scanner />
         <ScanOutlined
