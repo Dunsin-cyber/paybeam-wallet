@@ -97,10 +97,11 @@ function SuccessScreen() {
     try {
       await navigator.clipboard.writeText(createdInvoice);
       toast.success("Link copied to clipboard!");
+        setPaid(true);
 
-      setTimeout(() => {
-        setPaid(true)
-      },10000)
+      // setTimeout(() => {
+      //   setPaid(true)
+      // },10000)
     } catch (err) {
       toast.error("Failed to copy:", err);
     }
