@@ -19,6 +19,7 @@ import {
 import { Button, Input, Result, Space, Steps, Typography } from "antd";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import {useWalletKit} from "@/hooks/useStellarWalletKit"
 
 const { Paragraph, Text } = Typography;
 
@@ -41,6 +42,7 @@ function Payment() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { enable, sendPayment } = useWebLN();
+  const {connect} = useWalletKit()
 
   const invoice = useAppSelector((state) => state.invoice);
 
@@ -130,9 +132,9 @@ function Payment() {
   const handlePay = async () => {
     try {
       setPaying(true);
-      await enable();
-      const pay = await sendPayment(invoice?.lnurl);
-      console.log(pay);
+      await connect();
+      // const pay = await sendPayment(invoice?.lnurl);
+      // console.log(pay);
 
       setSteps(2);
       if (payToInvoice) {
@@ -142,13 +144,7 @@ function Payment() {
       }
     } catch (err) {
       console.log(err);
-      if (payToInvoice) {
-        setProgressBarStep(2);
-      } else {
-        setProgressBarStep(3);
-      }
-      setSteps(3);
-      toast.error(err.message);
+
     } finally {
       setPaying(false);
     }
@@ -179,7 +175,7 @@ function Payment() {
                 ? [
                     {
                       title: "Address / Invoice",
-                      description: "paste your invoice or LN address here",
+                      description: "paste your invoice  here",
                     },
                     {
                       title: "Preview",
@@ -192,8 +188,8 @@ function Payment() {
                   ]
                 : [
                     {
-                      title: "LN Address",
-                      description: "paste your invoice or LN address here",
+                      title: "Address",
+                      description: "paste your invoice  here",
                     },
                     {
                       title: "Amount in Sats",
@@ -283,7 +279,7 @@ function PaymentPreview() {
   return (
     <Result
       icon={<SmileOutlined />}
-      title={`${invoice?.satoshis.toLocaleString()} sats`}
+      title={`${invoice?.satoshis.toLocaleString()} XLM`}
       subTitle={`you are about to pay the above amount for ${invoice?.description.slice(
         0,
         30
@@ -319,7 +315,7 @@ function PaymentSuccess() {
     <Result
       status="success"
       title="Successfully Made Payment"
-      subTitle={` you paid ${invoice?.satoshis.toLocaleString()} sats for ${invoice?.description.slice(0, 30)}...`}
+      subTitle={` you paid ${invoice?.satoshis.toLocaleString()} XLM `}
     />
   );
 }

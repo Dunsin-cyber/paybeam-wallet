@@ -13,6 +13,7 @@
     "@bprogress/next": "^3.2.10",
     "@getalby/bitcoin-connect-react": "^3.7.1",
     "@reduxjs/toolkit": "^2.6.1",
+     "@creit.tech/stellar-wallets-kit": "1.4.1",
     "@tabler/icons-react": "^3.31.0",
     "antd": "^5.24.7",
     "bolt11": "^1.4.1",

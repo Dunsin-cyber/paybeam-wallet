@@ -3,7 +3,7 @@ import { useClient } from "@/context";
 import { useRouter } from "@/hooks/useRouterWithProgress";
 import { useWebLN } from "@/webln/provider";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { Button, Input, QRCode, Typography, theme } from "antd";
+import { Button, Input, QRCode, Typography, theme, Result } from "antd";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Converter from "./Converter";
@@ -90,6 +90,7 @@ const { useToken } = theme;
 function SuccessScreen() {
   const { token } = useToken();
     const { createdInvoice } = useClient();
+    const [paid, setPaid] = useState(false)
 
 
   const handleCopy = async () => {
@@ -103,6 +104,16 @@ function SuccessScreen() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-4">
+     {paid ? (
+
+       <Result
+            status="success"
+            title="Successfully Received Payment"
+            subTitle={` received XLM `}
+          />
+          ): {
+            <div>
+            
       <QRCode
         size={250}
         value={createdInvoice}
@@ -112,6 +123,8 @@ function SuccessScreen() {
         Copy to Clipboard
       </Button>
       <Text>waiting for payment...</Text>
+      </div>
+      }}
     </div>
   );
 }

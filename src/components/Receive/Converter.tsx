@@ -57,7 +57,7 @@ const Converter = () => {
           type="number"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder={mode === "sats" ? "Enter sats" : "Enter fiat"}
+          placeholder={mode === "sats" ? "Enter XLM" : "Enter fiat"}
           className="w-full px-4 py-2 pr-20 border rounded"
         />
         <button
@@ -65,15 +65,15 @@ const Converter = () => {
           onClick={toggleMode}
           className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xs bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 px-2 py-1 rounded transition"
         >
-          {mode === "sats" ? "Switch to USD" : "Switch to Sats"}
+          {mode === "sats" ? "Switch to USD" : "Switch to XLM"}
         </button>
       </div>
 
-      {inputValue && (
+      {/* {inputValue && (
         <p className="text-sm text-gray-500">≈ {getConvertedValue()}</p>
-      )}
+      )} */}
 
-      <p className="text-sm text-gray-400">BTC Price: ${btcPrice}</p>
+      {/* <p className="text-sm text-gray-400">BTC Price: ${btcPrice}</p> */}
     </div>
   );
 };

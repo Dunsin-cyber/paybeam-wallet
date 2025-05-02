@@ -58,7 +58,7 @@ export default function FloatingDockDemo() {
   return (
     <div className="flex justify-between items-center mt-5">
       <div className="text-3xl font-bold z-2 font-sans">
-        <ColourfulText text="act" />
+        <ColourfulText text="payBeam" />
       </div>
       <div className="flex space-x-4 justify-between">
         <ThemeToggle />
